@@ -2,3 +2,4 @@ application/target
 application/build
 .idea
 .gradle
+build
