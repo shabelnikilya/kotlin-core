@@ -21,13 +21,36 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//dependencies {
+//    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.1.4"))
+//
+//    implementation("org.springframework.boot:spring-boot-starter-web")
+//    implementation("org.springframework.boot:spring-boot-starter-webflux")
+//
+//    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+//    implementation("org.jetbrains.kotlin:kotlin-reflect")
+//    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+//
+//    testImplementation(kotlin("test"))
+//    testImplementation("org.springframework.boot:spring-boot-starter-test")
+//    testImplementation("io.projectreactor:reactor-test")
+//}
 
-    testImplementation(kotlin("test"))
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply {
+        plugin("io.spring.dependency-management")
+    }
+    dependencyManagement {
+        dependencies {
+            imports {
+                mavenBom("org.springframework.boot:spring-boot-dependencies:3.1.4")
+            }
+        }
+    }
 }
 
 tasks.test {
